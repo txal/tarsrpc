@@ -1,0 +1,36 @@
+
+module vvideo
+{
+    struct FileListInfo
+    {
+    	1 require string filename;
+    	2 require int format;
+    	3 require int status;
+    	4 require int copyright;
+    	5 require int fcount;
+    };
+
+    // 播放专用接口
+    struct FileListPlayInfo
+    {
+        1 require string vid;
+        2 require string title;
+        3 require int type;
+        4 require int status;
+        5 require int duration;
+        6 require long uin;
+        7 optional long vuid;
+        8 optional int deliverMethod;
+
+        19 optional map<string, int> testMap;
+        20 optional vector<FileListInfo> list;
+        21 optional int itestint = 21;
+        22 optional unsigned int itestuint = 22;
+        23 optional long itestlong = 23;
+        24 optional short itestshort = 24;
+        25 optional byte itestbyte = 25;
+        26 optional float itestfloat = 26.1;
+        27 optional double itestdouble = 27.2;
+        28 optional string iteststring = "28";
+    };
+};

@@ -1,0 +1,190 @@
+%module s2s
+%{
+#include "s2sClientIf.h"
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sstream>
+
+const std::string encode_msg(const std::string &dip, const std::string &wip, uint32_t port){
+   S2sDataEncoder tmpObj;
+   std::map<S2S::ISPType, uint32_t> tmp;
+   if (dip!=""){
+       tmp[S2S::CTL] = inet_addr(dip.c_str());
+   }
+
+   if (wip!=""){
+       tmp[S2S::CNC] = inet_addr(wip.c_str());
+   }
+   tmpObj.writeIpList(tmp);
+   tmpObj.writeTcpPort(port);
+
+   return tmpObj.endToString();
+}
+
+std::string decode_msg(const std::string& data) {
+    S2sDataDecoder tmpObj(data);
+    std::map<S2S::ISPType, uint32_t> tmp;
+    uint32_t port;
+    int ret = tmpObj.readIpList(tmp);
+    if (ret != 0) {
+        return "";
+    }
+    ret = tmpObj.readTcpPort(port);
+    if (ret != 0) {
+        return "";
+    }
+    std::ostringstream oss;
+    oss << "{";
+    oss << "\"iplist\":[";
+    for (std::map<S2S::ISPType, uint32_t>::iterator it=tmp.begin(); it!=tmp.end(); ) {
+        std::map<S2S::ISPType, uint32_t>::iterator cur = it++;
+        oss << "{";
+        oss << "\"" << cur->first << "\":\"" << cur->second << "\"";
+        oss << "}";
+        if (it != tmp.end()) {
+            oss << ",";
+        }
+    }
+    oss << "],";
+    oss << "\"tcp_port\":\"" << port << "\"";
+    oss << "}";
+    return oss.str();
+}
+%}
+%include <stl.i>
+%include <stdint.i>
+
+const std::string encode_msg(const std::string &dip, const std::string &wip, uint32_t port);
+std::string decode_msg(const std::string& data);
+
+enum MetaType
+{
+    ANY_TYPE = 0,
+//  DAEMON_TYPE = 2,            // 从旧daemon倒过来的数据
+//  1~127: reserved by s2s
+
+    // 以下可以用来区分data的编解码协议
+    TEXTPLAIN = 128,
+    S2SDECODER = 129,
+    YYPROTOCOL = 130,
+    TEXTJSON = 131,
+    MUSIC_PROC=4096
+};
+
+struct SubFilter // and relation
+{
+        std::string interestedName; // 模糊匹配"prefix"+"%" , like "serviceapp%"
+        int32_t interestedGroup;   // 0表示所有机房;
+        int32_t s2sType;            // ANY_TYPE表示关注所有type
+
+        SubFilter():interestedGroup(0),s2sType(ANY_TYPE)
+        {
+        }
+};
+enum S2sMetaStatus
+{
+    S2SMETA_OK_C,
+    S2SMETA_DIED_C      // be killed;
+};
+
+struct S2sMeta
+{
+    int64_t serverId;    // server分配的惟一标识id;
+    MetaType type;
+    std::string name;    // 服务名称；
+    int32_t groupId;    // 机房id
+    std::string data;   // 服务信息
+    int64_t timestamp;   // set by s2s server
+    S2sMetaStatus status;
+
+    S2sMeta():
+        serverId(-1),
+        type(ANY_TYPE),
+        groupId(0),
+        timestamp(0),
+        status(S2SMETA_OK_C)
+    {
+    }
+};
+
+enum S2sSessionStatus
+{
+    S2S_SESSIONOFF_C = 0,
+    S2S_SESSIONON_C,
+    S2S_SESSIONBIND_C,
+    S2S_DNSERROR_C,
+    S2S_AUTHFAILURE_C,
+    S2S_ERROR_C
+};
+
+%template(S2sMetaVector) std::vector<S2sMeta>;
+%template(SubFilterVector) std::vector<SubFilter>;
+
+
+class IMetaServer
+{
+public:
+    virtual ~IMetaServer(){}
+
+    /*
+       初始化
+       参数:
+       myName:  服务名字，初始上线需要先申请；
+       s2sKey:    申请服务名字时，生成的一个字符串，类似于ticket;
+       myType:   注册时data字段的编解码协议；
+       返回: 成功返回一个fd, 使用者需要监听这个fd的读事件，以获取MetaServer的状态更新和订阅更新； 失败返回-1;
+    */
+    virtual int initialize(const std::string& myName,const std::string& s2sKey, MetaType myType) = 0;
+
+    /*
+      向服务端订阅:
+      参数:
+      filters: 订阅条件, SubFilter间是or的关系，SubFilter里面的成员是and的关系；
+      返回: 成功0, 失败-1;
+    */
+    virtual int subscribe(const std::vector<SubFilter>& filters) = 0;
+    /*
+    获取MetaServer的状态更新或者订阅更新；
+    参数:
+    metas:   输出参数，返回订阅更新；
+    返回:  返回MetaServer的当前状态；
+     */
+    virtual S2sSessionStatus pollNotify(std::vector<S2sMeta> &metas) = 0;
+
+    /*
+    向s2s服务端注册服务信息；
+    参数:
+    binData:   服务信息；建议可用S2sDataEncoder/S2sDataDecoder进行编解码.
+    返回:  成功返回0,  失败返回-1;
+    */
+    virtual int setMine(const std::string& binData) = 0;
+
+    /*
+    向s2s服务端注释自己；
+    返回:  成功返回0,  失败返回-1;
+    */
+    virtual int delMine()=0;
+
+    /*
+      获取自己的meta, 主要获取serverId, 通过参数mine输出返回；
+      返回: 成功返回0,  失败返回-1;
+      */
+    virtual int getMine(S2sMeta & mine) = 0;
+
+    /*
+    以下三个接口，只在调用initialize前调用才生效；成功返回0，失败返回-1;
+    */
+
+    /*设置lostCheck模式,不设的话，默认为NoLostCheck_C*/
+    virtual int setLostCheckType(LostCheckType checkType) = 0;
+
+    /*设置机房id, 不设的话，默认从机器的hostinfo.ini里读， 可用于伪装groupId*/
+    virtual int setGroupId(uint32_t groupId) = 0;
+
+    /*设置连接目标，默认连中心点，一些小众机房，部有localDaemon的情况下，可以设置成连localDaemon, 参数置为false*/
+    virtual int setTarget(bool isToDaemon) = 0;
+};
+
+IMetaServer* newMetaServer();
+

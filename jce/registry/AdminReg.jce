@@ -1,0 +1,416 @@
+#include "../node/NodeDescriptor.jce"
+
+module taf
+{
+    struct ServerStateDesc
+    {
+        0 require string settingStateInReg;
+        1 require string presentStateInReg;
+        2 require string presentStateInNode;
+        3 require int processId;
+        4 require string patchVersion;
+        5 require string patchTime;
+        6 require string patchUser;
+    };
+    
+    enum tafErrCode
+    {
+		//请求的node节点没有注册或者节点心跳超时
+		EM_TAF_NODE_NOT_REGISTRY_ERR = 1001,
+		//主控请求node节点超时
+		EM_TAF_CALL_NODE_TIMEOUT_ERR = 1002,
+		//从主控数据库获取服务的描述信息错误
+		EM_TAF_LOAD_SERVICE_DESC_ERR = 1003,
+		//服务可能处在停止或者发布过程中
+		EM_TAF_SERVICE_STATE_ERR = 1004,
+		//同样的请求已经在处理了
+		EM_TAF_REQ_ALREADY_ERR = 1005,
+		//请求来自非法的ip地址,如并非合法的主控地址
+		EM_TAF_INVALID_IP_ERR = 1006,
+		//参数错误
+		EM_TAF_PARAMETER_ERR = 1007,
+		//非taf方面的问题，用于node判断业务机器问题等
+		EM_TAF_OTHER_ERR = 1008,
+		//未知错误
+		EM_TAF_UNKNOWN_ERR = -1,
+		//成功
+		EM_TAF_SUCCESS = 0
+    };
+    enum ServerGridStatus
+    {
+    	//正常发布服务
+		NORMAL	= 0,
+		//自动扩容时，灰度服务，即部分流量分到灰度节点上
+		GRID	= 1,
+		//发布服务，但是发布后，没用流量过来
+		NO_FLOW = 2	
+    };
+    struct ServerGridDesc
+    {
+    	0 require string			application;
+		1 require string			servername;
+		2 require string			nodename;
+		3 require ServerGridStatus		status;
+    };
+    
+       /**
+         *服务的权重类型
+         *
+         */
+       enum WeightType_E
+       {
+            EM_LOOP,
+            EM_STATIC,
+            EM_DYNAMIC
+       };
+       
+	struct AdapterObj
+	{
+	    0 require string ObjName;   //servant去掉app和servername部分
+	    1 require int threadNum;
+	    2 require string endp_tcpudp;  //端口类型
+	    3 require int maxConnections;
+	    4 require int queuecap;
+	    5 require int queuetimeout;
+	    6 require string protocol="taf";
+           7 optional string handle_group;
+           8 optional int grid=0;
+           9 optional int shmkey=0;
+           10 optional int shmcap=0;
+           11 optional string endpoint;
+	};
+    
+	struct serverInfo
+	{
+            0 require string application;
+            1 require string serverName;
+            2 require string nodeName;
+            3 optional string setId = "";
+            4 optional bool enable_group=false;
+            5 optional string ip_group_name = "";
+            6 optional string patch_version;    
+            7 optional string templateName;  //服务使用的模板 名称 
+            8 optional int asyncThreadNum=3; 
+            9 optional string serverType="taf_cpp";        
+            10 optional int bak_flag=0;   //0:不是备机,1:备机
+            11 optional string autoType=""; //是否是由自动伸缩扩容的
+            12 optional map<string, AdapterObj> adapters; 
+            13 optional bool active=true; //当前状态
+            14 optional WeightType_E weightType=EM_LOOP; //权重类型
+            15 optional int weight;//权重值
+            16 optional ServerGridStatus status = NORMAL;
+            17 optional bool bSettingActive=true;//设置状态
+	};
+
+      struct srvRequestInfo
+      {
+		0 require string application="";
+		1 require string serverName="";
+		2 require string nodeName="";
+		3 optional bool bNeedAdapters=false;  //是否获取adapters信息，默认不取
+		4 optional bool bNeedTafApp=false;    //是否获取taf应用下的服务，在application为""时生效
+      };
+    /**
+     * admin 管理接口
+     */
+    interface AdminReg
+    {
+        /***********application****************/
+
+        /**
+         * 获取application列表
+         *
+         * @param null
+         * @param out result : 结果描述
+         *
+         * @return application列表
+         */
+        vector<string> getAllApplicationNames(out string result);
+
+
+        /***********node****************/
+
+        /**
+         * 获取node列表
+         *
+         * @param null
+         * @param out result : 结果描述
+         *
+         * @return node 列表
+         */
+        vector<string> getAllNodeNames(out string result);
+
+        /**
+         * ping node
+         *
+         * @param name: node id
+         * @param out result : 结果描述
+         *
+         * @return : true-ping通；false-不通
+         */
+        bool pingNode(string name, out string result);
+
+        /**
+         * get node version
+         *
+         * @param name: node id
+         * @param out version ：版本
+         * @param out result : 结果描述
+         *
+         * @return : 0-成功 others-失败
+         */
+        int getNodeVesion(string name, out string version, out string result);
+
+        /**
+         * 停止 node
+         *
+         * @param name: node id
+         * @param out result : 结果描述
+         *
+         * @return : 0-成功 others-失败
+         */
+        int shutdownNode(string name, out string result);
+
+        /***********server****************/
+
+        /**
+         * 获取server列表
+         *
+         * @param name: null
+         * @param out result : 结果描述
+         *
+         * @return: server列表及相关信息
+         */
+        vector<vector<string> > getAllServerIds(out string result);
+
+        /**
+         * 获取特定server状态
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeNmae   : node id
+         * @param out state  : 状态
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int getServerState(string application,string serverName, string nodeName, out ServerStateDesc state, out string result);
+
+        /**
+         * 获取某ip所属group 用于机房部署  例如某ip属于那个机房
+         *
+         * @param nodeNmae   : ip
+         * @param out int    : group id
+         * @param out result : 结果描述
+         *
+         * @return : 处理结果
+         */
+        int getGroupId(string ip, out int groupId, out string result);
+
+        /**
+         * 启动特定server
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int startServer(string application,string serverName, string nodeName, out string result);
+
+        /**
+         * 停止特定server
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int stopServer(string application,string serverName, string nodeName, out string result);
+
+        /**
+         * 重启特定server
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int restartServer(string application,string serverName, string nodeName, out string result);
+
+		/**
+         * 重启特定server，这里使用了tafnode的restart接口，使restart原子化
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+		int restartServerPro(string application,string serverName, string nodeName, out string result);
+
+
+        /**
+         * 通知server
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param command    : 命令
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int notifyServer(string application,string serverName, string nodeName, string command, out string result);
+
+        /**
+         * 发布特定server
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param shutdown   : 是否需要停止服务
+         * @param version    : patch的版本
+         * @param user       : 发布者
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int patchServer(string application, string serverName, string nodeName, bool shutdown,
+                        string version, string user, out string result);
+
+        /**
+         * 批量发布服务
+         *
+         * @param vector<PatchRequest>: 批量发布的请求
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int batchPatch(PatchRequest req, out string result);
+
+        /**
+         * 预发布接口，将指定版本的二进制文件下载到node
+         *
+         * @param PreparePatchRequest: 预发布
+         * @param out nodeList :已经提交预发布任务的node列表 
+         *
+         * @return : 0
+         */
+        int prepareBatchPatch(PreparePatchRequest req, out vector<string> nodeList, out string result);
+        
+        /**
+        * 获取预发布的进度信息
+        * specialNodeList:如果为空，管理服务根据application+serverName查询node列表，如果不为空，直接使用
+        */
+        int getPreparePatchPercent(string application, string serverName, vector<string> specialNodeList, out map<string, PreparePatchInfo> patchInfos, out string result);
+        
+        /**
+         * 发布特定文件
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param sSrcFile   : patch服务器上的路径
+         * @param sDstFile   : node服务器上的目标路径
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int patchSubborn(string application, string serverName, string nodeName, string sSrcFile, string sDstFile, out string result);
+
+        /**
+        * 获取服务发布进度
+        * @param application  : 服务所属应用名
+        * @param serverName   : 服务名
+        * @param nodeName     : node id
+        * @out tPatchInfo     ：发布信息
+        *
+        * @return : 返回值详见tafErrCode枚举值
+        */
+        int getPatchPercent(string application,string serverName,string nodeName,out PatchInfo tPatchInfo);
+
+
+        /**
+         * 加载特定server
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param out result : 结果描述
+         *
+         * @return : 返回值详见tafErrCode枚举值
+         */
+        int loadServer(string application, string serverName, string nodeName, out string result);
+
+        /**
+         * 获取相应模板
+         *
+         * @param profileName: 模板名称
+         * @param out profileTemplate: 模板内容
+         * @param out resultDesc: 结果描述
+         *
+         * @return : 0-成功 others-失败
+         */
+        int getProfileTemplate(string profileName , out string profileTemplate, out string resultDesc);
+
+        /**
+         * 获取服务相应模板
+         *
+         * @param application: 应用
+         * @param serverName : server名
+         * @param nodeName   : node id
+         * @param out profileTemplate: 模板内容
+         * @param out resultDesc: 结果描述
+         *
+         * @return : 0-成功 others-失败
+         */
+        int getServerProfileTemplate(string application, string serverName, string nodeName, out string profileTemplate, out string resultDesc);
+
+        /**
+         * node通过接口获取连接上主控的node ip
+         * @param sNodeIp:  node 的ip
+         *
+         * @return 0-成功 others-失败
+         */
+        int getClientIp(out string sClientIp);
+	
+	/**
+	* 获取某个或则所有服务的setd和idc名字
+	* @param info: 根据输入参数获取信息
+	* @param out vServerInfo 服务信息
+	*
+	* @return 0-成功 others-失败
+	*/
+	int getServerInfo(srvRequestInfo info,out vector<serverInfo> vServerInfo);
+		
+		/**
+         * 自动伸缩时调用的灰度发布接口
+         *
+         * @param vGridDesc: 灰度发布的信息
+         * @param vGridFailDesc: 灰度发布节点失败的信息
+         * @param out resultDesc: 结果描述
+         *
+         * @return : 0-成功 others-失败
+         */
+        int gridPatchServer(vector<ServerGridDesc> vGridDesc, out vector<ServerGridDesc> vGridFailDesc, out string resultDesc);
+
+        /**
+          * 检查内容格式是否服务taf框架内部支持的配置格式
+          * 
+          *@param sContent 待检查的配置文件内容
+          *@param out resultDesc: 结果描述
+          *
+          *@return :0-成功 others-失败
+          */
+        int checkTafConfig(string sContent,out string resultDesc);
+    };
+
+};
+

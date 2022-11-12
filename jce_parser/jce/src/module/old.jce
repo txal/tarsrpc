@@ -1,0 +1,16 @@
+
+module vvideo
+{
+    // 播放专用接口
+    struct FileListPlayInfo
+    {
+        1 require string vid;
+        2 require string title;
+        3 require int type;
+        4 require int status;
+        5 require int duration;
+        6 require long uin;
+        7 optional long vuid;
+        8 optional int deliverMethod;
+    };
+};

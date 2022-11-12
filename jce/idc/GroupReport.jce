@@ -1,0 +1,20 @@
+module taf
+{
+    interface GroupReport
+    {
+	    /**
+	    * 上报没有分组的ip 
+	    */
+    	void reportNoGroupIP(string objName, string ip);
+    	
+    	/**
+    	* 测试float是否有问题
+    	*/
+    	float floatTest(float input);
+    	
+    	/**
+    	*
+    	*/
+ 	    double doubleTest(double input);    	    	    	
+	};
+};

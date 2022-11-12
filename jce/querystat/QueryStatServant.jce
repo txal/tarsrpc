@@ -1,0 +1,38 @@
+module  taf
+{
+
+	struct ServiceState{
+		0 require int time_interval_s = -1;	// 本项统计信息使用的时间周期长度，单位为秒。如果为-1，本统计信息无效。
+		1 require int succ_count = -1;		
+		2 require int total_time_ms = -1;
+		3 require int timeout_count = -1;
+		4 require int except_count = -1;
+	};
+
+	struct ReqInfo
+	{
+		0 require string sServerName;
+		1 require string sDate;
+		2 require string sStartTime;
+		3 require string sEndTime;
+		4 require long uInterval= 0;
+		5 require vector<string> vIpList;
+	};
+	
+	struct RspInfo
+	{
+		0 require string sSlaveName;
+		1 require string sMasterIp;
+		2 require ServiceState result;
+		3 require string sStartTime;
+		4 require string sEndTime;
+	};
+
+    interface queryData
+    {
+		int query(string input, out string result );
+
+		int queryForTafPlus(ReqInfo req, out vector<RspInfo> vRsp);
+    };
+
+};
