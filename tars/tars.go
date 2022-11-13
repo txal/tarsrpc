@@ -6,8 +6,9 @@ package tars
 
 import (
 	"context"
-	"tarsrpc/tars/servant"
-	pbtaf "tarsrpc/tars/servant/protocol"
+
+	"code.com/tars/goframework/tars/servant"
+	pbtaf "code.com/tars/goframework/tars/servant/protocol"
 )
 
 // AddServant only used for tars header,idl plugin use tarsheaderpbbody2go

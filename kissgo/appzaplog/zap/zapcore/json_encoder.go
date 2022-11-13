@@ -28,8 +28,8 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"tarsrpc/kissgo/appzaplog/zap/buffer"
-	"tarsrpc/kissgo/appzaplog/zap/internal/bufferpool"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/buffer"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/internal/bufferpool"
 )
 
 // For JSON-escaping; see jsonEncoder.safeAddString below.

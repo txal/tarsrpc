@@ -3,9 +3,10 @@ package servant
 import (
 	"net/http"
 	"strings"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
 	"time"
+
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 type TarsHttpMux struct {

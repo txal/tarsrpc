@@ -6,7 +6,8 @@ package appzaplog
 
 import (
 	"log/syslog"
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 
 	"github.com/pkg/errors"
 )

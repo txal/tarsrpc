@@ -2,10 +2,11 @@ package servant
 
 import (
 	"reflect"
-	end "tarsrpc/jce/servant/taf"
-	"tarsrpc/jce/taf"
-	"tarsrpc/jce_parser/gojce"
 	"testing"
+
+	end "code.com/tars/goframework/jce/servant/taf"
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/jce_parser/gojce"
 )
 
 func TestAdapterProxy(t *testing.T) {

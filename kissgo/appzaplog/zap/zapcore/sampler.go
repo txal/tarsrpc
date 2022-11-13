@@ -23,7 +23,7 @@ package zapcore
 import (
 	"time"
 
-	"tarsrpc/kissgo/appzaplog/atomic"
+	"code.com/tars/goframework/kissgo/appzaplog/atomic"
 )
 
 const (

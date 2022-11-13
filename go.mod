@@ -1,4 +1,4 @@
-module tarsrpc
+module code.com/tars/goframework
 
 go 1.16
 

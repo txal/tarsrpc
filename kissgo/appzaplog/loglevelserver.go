@@ -7,7 +7,8 @@ package appzaplog
 import (
 	"net"
 	"net/http"
-	"tarsrpc/kissgo/appzaplog/zap"
+
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 var setlevelpath string

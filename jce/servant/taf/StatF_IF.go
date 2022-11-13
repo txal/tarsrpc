@@ -10,9 +10,10 @@ import (
 	context "context"
 	"errors"
 	"reflect"
-	"tarsrpc/jce/taf"
-	"tarsrpc/jce_parser/gojce"
-	m "tarsrpc/tars/servant/model"
+
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/jce_parser/gojce"
+	m "code.com/tars/goframework/tars/servant/model"
 )
 
 type StatF struct {

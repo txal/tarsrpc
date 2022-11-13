@@ -2,8 +2,9 @@ package main
 
 import (
 	"encoding/binary"
-	"tarsrpc/tars/tarsserver"
 	"time"
+
+	"code.com/tars/goframework/tars/tarsserver"
 )
 
 type MyServer struct{}

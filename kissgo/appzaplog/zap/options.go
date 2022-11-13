@@ -20,7 +20,7 @@
 
 package zap
 
-import "tarsrpc/kissgo/appzaplog/zap/zapcore"
+import "code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 
 // An Option configures a Logger.
 type Option interface {

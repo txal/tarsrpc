@@ -3,14 +3,14 @@ package servant
 import (
 	"strings"
 
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 
-	"tarsrpc/kissgo/gobreaker"
+	"code.com/tars/goframework/kissgo/gobreaker"
 
-	"tarsrpc/jce/servant/taf"
+	"code.com/tars/goframework/jce/servant/taf"
 
-	"tarsrpc/tars/servant/stat"
+	"code.com/tars/goframework/tars/servant/stat"
 )
 
 func parseObjName(obj string) (string, string, string) {

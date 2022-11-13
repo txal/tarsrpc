@@ -2,8 +2,9 @@ package model
 
 import (
 	"context"
-	"tarsrpc/jce/taf"
-	pbtaf "tarsrpc/tars/servant/protocol"
+
+	"code.com/tars/goframework/jce/taf"
+	pbtaf "code.com/tars/goframework/tars/servant/protocol"
 )
 
 type Servant interface {

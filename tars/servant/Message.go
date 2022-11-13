@@ -1,11 +1,12 @@
 package servant
 
 import (
-	base "tarsrpc/jce/servant/taf"
-	"tarsrpc/jce/taf"
 	"time"
 
-	pbtaf "tarsrpc/tars/servant/protocol"
+	base "code.com/tars/goframework/jce/servant/taf"
+	"code.com/tars/goframework/jce/taf"
+
+	pbtaf "code.com/tars/goframework/tars/servant/protocol"
 )
 
 type IMessage interface {

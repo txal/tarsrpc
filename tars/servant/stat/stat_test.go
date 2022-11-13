@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"tarsrpc/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 
-	"tarsrpc/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog"
 )
 
 const (

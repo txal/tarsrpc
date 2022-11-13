@@ -24,7 +24,7 @@ import (
 	"sort"
 	"time"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 // SamplingConfig sets a sampling strategy for the logger. Sampling caps the

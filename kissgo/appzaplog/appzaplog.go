@@ -21,8 +21,8 @@ import (
 	"net/http"
 	"strings"
 
-	"tarsrpc/kissgo/appzaplog/zap"
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 var (

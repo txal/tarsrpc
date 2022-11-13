@@ -7,9 +7,9 @@ package servant
 import (
 	"sync"
 
-	"tarsrpc/jce/servant/taf"
-	s "tarsrpc/tars/servant/model"
-	"tarsrpc/tars/servant/sd"
+	"code.com/tars/goframework/jce/servant/taf"
+	s "code.com/tars/goframework/tars/servant/model"
+	"code.com/tars/goframework/tars/servant/sd"
 
 	"github.com/juju/ratelimit"
 )

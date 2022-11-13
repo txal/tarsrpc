@@ -3,7 +3,7 @@ package util_test
 import (
 	"testing"
 
-	"tarsrpc/kissgo/util"
+	"code.com/tars/goframework/kissgo/util"
 )
 
 var utc int64 = 1486465081                 //时间戳

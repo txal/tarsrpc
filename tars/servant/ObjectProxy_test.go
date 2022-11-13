@@ -5,9 +5,10 @@ import (
 	"context"
 	"fmt"
 	"reflect"
-	"tarsrpc/jce/taf"
-	"tarsrpc/jce_parser/gojce"
 	"testing"
+
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/jce_parser/gojce"
 )
 
 func TestObjectProxy(t *testing.T) {

@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"tarsrpc/jce_parser/gojce"
+	"code.com/tars/goframework/jce_parser/gojce"
 )
 
 type EndpointF struct {

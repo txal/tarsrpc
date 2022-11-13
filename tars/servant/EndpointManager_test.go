@@ -4,10 +4,11 @@ import (
 	"net"
 	"reflect"
 	"strconv"
-	"tarsrpc/jce/taf"
-	"tarsrpc/jce_parser/gojce"
-	"tarsrpc/tars/util/endpoint"
 	"testing"
+
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/jce_parser/gojce"
+	"code.com/tars/goframework/tars/util/endpoint"
 )
 
 func TestEndpointManager(t *testing.T) {

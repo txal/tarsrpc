@@ -8,11 +8,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"tarsrpc/jce/taf"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
-	pbtaf "tarsrpc/tars/servant/protocol"
-	"tarsrpc/tars/util/current"
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	pbtaf "code.com/tars/goframework/tars/servant/protocol"
+	"code.com/tars/goframework/tars/util/current"
 )
 
 type ServantProxy struct {

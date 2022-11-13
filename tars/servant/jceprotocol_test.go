@@ -5,10 +5,11 @@ import (
 	"context"
 	"encoding/binary"
 	"errors"
-	"github.com/golang/protobuf/proto"
-	"tarsrpc/jce/taf"
-	"tarsrpc/jce_parser/gojce"
 	"testing"
+
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/jce_parser/gojce"
+	"github.com/golang/protobuf/proto"
 )
 
 type helloDispatcher struct {

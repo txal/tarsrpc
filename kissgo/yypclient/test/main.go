@@ -2,9 +2,10 @@ package main
 
 import (
 	"log"
-	"tarsrpc/kissgo/yyp"
-	"tarsrpc/kissgo/yypclient"
 	"time"
+
+	"code.com/tars/goframework/kissgo/yyp"
+	"code.com/tars/goframework/kissgo/yypclient"
 )
 
 type PQueryUserAttentionListReq struct {

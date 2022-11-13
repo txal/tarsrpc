@@ -23,7 +23,7 @@ package zap
 import (
 	"time"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 // Array constructs a field with the given key and ArrayMarshaler. It provides

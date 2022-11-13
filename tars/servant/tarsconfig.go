@@ -10,10 +10,11 @@ import (
 	"io/ioutil"
 	"os"
 	"strconv"
-	"tarsrpc/jce/config/taf"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
 	"time"
+
+	"code.com/tars/goframework/jce/config/taf"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 type TarConfig struct {

@@ -6,8 +6,8 @@ import (
 
 	"github.com/influxdata/influxdb-client-go/v2/api/http"
 
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	"github.com/influxdata/influxdb-client-go/v2/api"

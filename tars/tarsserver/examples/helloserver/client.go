@@ -4,8 +4,9 @@ import (
 	"encoding/binary"
 	"fmt"
 	"strconv"
-	"tarsrpc/tars/tarsserver"
 	"time"
+
+	"code.com/tars/goframework/tars/tarsserver"
 )
 
 type MyClient struct {

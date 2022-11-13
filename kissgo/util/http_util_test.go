@@ -1,8 +1,8 @@
 package util_test
 
 import (
+	"code.com/tars/goframework/kissgo/util"
 	"net/http"
-	"tarsrpc/kissgo/util"
 	"testing"
 )
 

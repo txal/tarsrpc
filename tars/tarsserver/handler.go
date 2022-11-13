@@ -9,8 +9,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 type ConnectHander struct {

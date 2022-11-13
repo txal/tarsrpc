@@ -1,9 +1,9 @@
 package servant
 
 import (
-	"tarsrpc/jce/notify/taf"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/jce/notify/taf"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 type NotifyHelper struct {

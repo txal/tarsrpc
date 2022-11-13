@@ -20,7 +20,7 @@
 
 package zapcore
 
-import "tarsrpc/kissgo/appzaplog/multierr"
+import "code.com/tars/goframework/kissgo/appzaplog/multierr"
 
 type hooked struct {
 	Core

@@ -23,9 +23,9 @@ package zap
 import (
 	"fmt"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 
-	"tarsrpc/kissgo/appzaplog/multierr"
+	"code.com/tars/goframework/kissgo/appzaplog/multierr"
 )
 
 const (

@@ -92,7 +92,7 @@ import (
 	"strings"
 	"sync"
 
-	"tarsrpc/kissgo/appzaplog/atomic"
+	"code.com/tars/goframework/kissgo/appzaplog/atomic"
 )
 
 var (

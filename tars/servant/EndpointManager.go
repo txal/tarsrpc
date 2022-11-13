@@ -10,11 +10,11 @@ import (
 
 	"github.com/serialx/hashring"
 
-	"tarsrpc/jce/servant/taf"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
-	"tarsrpc/tars/servant/sd"
-	"tarsrpc/tars/util/endpoint"
+	"code.com/tars/goframework/jce/servant/taf"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/tars/servant/sd"
+	"code.com/tars/goframework/tars/util/endpoint"
 )
 
 type EndpointManager struct {

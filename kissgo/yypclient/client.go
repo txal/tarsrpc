@@ -12,10 +12,11 @@ import (
 	"os"
 	"strconv"
 	"sync"
-	"tarsrpc/kissgo/s2s"
 	"time"
 
-	"tarsrpc/kissgo/yyp"
+	"code.com/tars/goframework/kissgo/s2s"
+
+	"code.com/tars/goframework/kissgo/yyp"
 
 	"gopkg.in/fatih/pool.v2"
 )

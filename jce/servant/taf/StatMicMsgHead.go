@@ -8,7 +8,8 @@ package taf
 
 import (
 	"reflect"
-	"tarsrpc/jce_parser/gojce"
+
+	"code.com/tars/goframework/jce_parser/gojce"
 )
 
 type StatMicMsgHead struct {

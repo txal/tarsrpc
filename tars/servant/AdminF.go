@@ -6,10 +6,10 @@ import (
 	"sync"
 	"time"
 
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
-	pbtaf "tarsrpc/tars/servant/protocol"
-	"tarsrpc/tars/util/conf"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	pbtaf "code.com/tars/goframework/tars/servant/protocol"
+	"code.com/tars/goframework/tars/util/conf"
 )
 
 var (

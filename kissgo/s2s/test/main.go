@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync"
 
-	"tarsrpc/kissgo/s2s"
+	"code.com/tars/goframework/kissgo/s2s"
 )
 
 var host = flag.String("h", "127.0.0.1", "host")

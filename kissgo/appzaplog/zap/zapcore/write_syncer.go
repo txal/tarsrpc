@@ -24,7 +24,7 @@ import (
 	"io"
 	"sync"
 
-	"tarsrpc/kissgo/appzaplog/multierr"
+	"code.com/tars/goframework/kissgo/appzaplog/multierr"
 )
 
 // A WriteSyncer is an io.Writer that can also flush any buffered data. Note

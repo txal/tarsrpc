@@ -25,7 +25,7 @@ import (
 	"strings"
 	"sync"
 
-	"tarsrpc/kissgo/appzaplog/zap/internal/bufferpool"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/internal/bufferpool"
 )
 
 const _zapPackage = "go.uber.org/zap"

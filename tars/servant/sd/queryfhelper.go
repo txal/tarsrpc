@@ -5,8 +5,8 @@
 package sd
 
 import (
-	"tarsrpc/jce/servant/taf"
-	//"tarsrpc/kissgo/appzaplog"
+	"code.com/tars/goframework/jce/servant/taf"
+	//"code.com/tars/goframework/kissgo/appzaplog"
 	"errors"
 
 	"github.com/juju/ratelimit"

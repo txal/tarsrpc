@@ -20,7 +20,7 @@
 
 package zapcore
 
-import "tarsrpc/kissgo/appzaplog/zap/internal/color"
+import "code.com/tars/goframework/kissgo/appzaplog/zap/internal/color"
 
 var (
 	_levelToColor = map[Level]color.Color{

@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 // ServeHTTP is a simple JSON endpoint that can report on or change the current

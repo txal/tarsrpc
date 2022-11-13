@@ -547,11 +547,11 @@ string Jce2Go::generateGo(const InterfacePtr &pPtr , const NamespacePtr &nPtr) c
     s << TAB << "import (" << endl;
     INC_TAB;
     //s << TAB << "\"fmt\"" << endl;
-    s << TAB << "\"tarsrpc/jce/taf\"" << endl;
-    s << TAB << "\"tarsrpc/jce_parser/gojce\"" << endl;
+    s << TAB << "\"code.com/tars/goframework/jce/taf\"" << endl;
+    s << TAB << "\"code.com/tars/goframework/jce_parser/gojce\"" << endl;
     s << TAB << "\"reflect\"" << endl;
     //s << TAB << ". \"taf/servant\"" << endl;
-    s << TAB << "m \"tarsrpc/tars/servant/model\""<< endl;
+    s << TAB << "m \"code.com/tars/goframework/tars/servant/model\""<< endl;
     s << TAB << "\"errors\""<< endl;
     s << TAB << "context \"context\""<<endl;
     s << TAB << ")" << endl;
@@ -919,7 +919,7 @@ void Jce2Go::setBasePackage(const string &prefix)
 void Jce2Go::setGojcePath(const string &gojcePath)
 {
     _gojcePath = "import \"";
-    _gojcePath.append("tarsrpc/").append(gojcePath).append("\"");
+    _gojcePath.append("code.com/tars/goframework/").append(gojcePath).append("\"");
 }
 
 void Jce2Go::setOptionalPack(bool optional)

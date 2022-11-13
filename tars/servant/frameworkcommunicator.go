@@ -6,7 +6,8 @@ package servant
 
 import (
 	"sync"
-	"tarsrpc/tars/servant/sd"
+
+	"code.com/tars/goframework/tars/servant/sd"
 )
 
 type ICommunicator interface {

@@ -1,10 +1,10 @@
 package yypclient
 
 import (
+	"code.com/tars/goframework/kissgo/yyp"
 	"encoding/hex"
 	"fmt"
 	"runtime"
-	"tarsrpc/kissgo/yyp"
 	"testing"
 	"time"
 )

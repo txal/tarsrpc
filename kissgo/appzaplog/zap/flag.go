@@ -23,7 +23,7 @@ package zap
 import (
 	"flag"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 // LevelFlag uses the standard library's flag.Var to declare a global flag

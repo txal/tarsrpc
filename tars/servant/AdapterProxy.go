@@ -11,14 +11,14 @@ import (
 	"sync"
 	"time"
 
-	end "tarsrpc/jce/servant/taf"
-	"tarsrpc/jce/taf"
-	"tarsrpc/jce_parser/gojce"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
-	"tarsrpc/kissgo/gobreaker"
-	pbtaf "tarsrpc/tars/servant/protocol"
-	"tarsrpc/tars/tarsserver"
+	end "code.com/tars/goframework/jce/servant/taf"
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/jce_parser/gojce"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/gobreaker"
+	pbtaf "code.com/tars/goframework/tars/servant/protocol"
+	"code.com/tars/goframework/tars/tarsserver"
 
 	"github.com/golang/protobuf/proto"
 )

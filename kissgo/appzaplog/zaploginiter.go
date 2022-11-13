@@ -6,8 +6,9 @@ package appzaplog
 
 import (
 	"fmt"
-	"tarsrpc/kissgo/appzaplog/zap"
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 
 	//"log/syslog"
 	"os"

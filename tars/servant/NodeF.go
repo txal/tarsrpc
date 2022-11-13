@@ -2,9 +2,10 @@ package servant
 
 import (
 	"os"
-	"tarsrpc/jce/nodeF/taf"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
+
+	"code.com/tars/goframework/jce/nodeF/taf"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 type NodeFHelper struct {

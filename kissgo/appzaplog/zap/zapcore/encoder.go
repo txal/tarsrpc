@@ -23,7 +23,7 @@ package zapcore
 import (
 	"time"
 
-	"tarsrpc/kissgo/appzaplog/zap/buffer"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/buffer"
 )
 
 // DefaultLineEnding defines the default line ending when writing logs.

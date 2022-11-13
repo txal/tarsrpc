@@ -26,10 +26,10 @@ import (
 	"sync"
 	"time"
 
-	"tarsrpc/kissgo/appzaplog/zap/internal/bufferpool"
-	"tarsrpc/kissgo/appzaplog/zap/internal/exit"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/internal/bufferpool"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/internal/exit"
 
-	"tarsrpc/kissgo/appzaplog/multierr"
+	"code.com/tars/goframework/kissgo/appzaplog/multierr"
 )
 
 var (

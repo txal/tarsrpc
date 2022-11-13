@@ -8,18 +8,18 @@ import (
 	"path"
 	"time"
 
-	"tarsrpc/tars/servant/stat"
+	"code.com/tars/goframework/tars/servant/stat"
 
-	"tarsrpc/tars/servant/warn"
+	"code.com/tars/goframework/tars/servant/warn"
 
 	"github.com/go-redis/redis"
 
-	"tarsrpc/jce/servant/taf"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
-	"tarsrpc/kissgo/httpmetrics"
-	"tarsrpc/tars/tarsserver"
-	"tarsrpc/tars/util/conf"
+	"code.com/tars/goframework/jce/servant/taf"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/httpmetrics"
+	"code.com/tars/goframework/tars/tarsserver"
+	"code.com/tars/goframework/tars/util/conf"
 )
 
 const (

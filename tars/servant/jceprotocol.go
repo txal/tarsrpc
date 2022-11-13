@@ -9,11 +9,11 @@ import (
 	"runtime"
 	"time"
 
-	"tarsrpc/jce/taf"
-	"tarsrpc/jce_parser/gojce"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
-	"tarsrpc/tars/servant/warn"
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/jce_parser/gojce"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/tars/servant/warn"
 )
 
 type Dispatcher interface {

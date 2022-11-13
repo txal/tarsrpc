@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"testing"
 
-	"tarsrpc/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog"
 )
 
 func TestConf(t *testing.T) {

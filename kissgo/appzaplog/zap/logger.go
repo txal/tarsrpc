@@ -28,7 +28,7 @@ import (
 	"strings"
 	"time"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 // A Logger provides fast, leveled, structured logging. All methods are safe

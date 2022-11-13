@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"sync"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 var (

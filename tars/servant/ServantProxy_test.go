@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"reflect"
-	"tarsrpc/jce_parser/gojce"
 	"testing"
+
+	"code.com/tars/goframework/jce_parser/gojce"
 )
 
 func TestServantProxy(t *testing.T) {

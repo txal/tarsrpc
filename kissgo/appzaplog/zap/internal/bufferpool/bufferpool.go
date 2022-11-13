@@ -22,7 +22,7 @@
 // packages can recreate the same functionality with buffers.NewPool.
 package bufferpool
 
-import "tarsrpc/kissgo/appzaplog/zap/buffer"
+import "code.com/tars/goframework/kissgo/appzaplog/zap/buffer"
 
 var (
 	_pool = buffer.NewPool()

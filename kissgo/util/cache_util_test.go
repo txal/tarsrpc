@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"tarsrpc/kissgo/util"
+	"code.com/tars/goframework/kissgo/util"
 )
 
 func doingKey(t *testing.T, c *util.CacheInfo, key string, mustExist bool, mustSize int64) {

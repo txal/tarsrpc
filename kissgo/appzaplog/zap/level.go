@@ -21,8 +21,8 @@
 package zap
 
 import (
-	"tarsrpc/kissgo/appzaplog/atomic"
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/atomic"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 const (

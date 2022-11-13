@@ -23,7 +23,7 @@ package zap
 import (
 	"sync"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 var _errArrayElemPool = sync.Pool{New: func() interface{} {

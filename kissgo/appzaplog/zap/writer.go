@@ -24,9 +24,9 @@ import (
 	"io/ioutil"
 	"os"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 
-	"tarsrpc/kissgo/appzaplog/multierr"
+	"code.com/tars/goframework/kissgo/appzaplog/multierr"
 )
 
 // Open is a high-level wrapper that takes a variadic number of paths, opens or

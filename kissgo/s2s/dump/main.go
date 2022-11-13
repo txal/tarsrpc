@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"tarsrpc/kissgo/s2s"
+	"code.com/tars/goframework/kissgo/s2s"
 )
 
 func main() {

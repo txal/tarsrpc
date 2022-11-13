@@ -1,8 +1,8 @@
 package util_test
 
 import (
+	"code.com/tars/goframework/kissgo/util"
 	"fmt"
-	"tarsrpc/kissgo/util"
 	"testing"
 )
 

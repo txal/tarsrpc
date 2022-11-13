@@ -3,7 +3,8 @@ package endpoint
 import (
 	"net"
 	"strconv"
-	"tarsrpc/jce/servant/taf"
+
+	"code.com/tars/goframework/jce/servant/taf"
 )
 
 func Taf2endpoint(end taf.EndpointF) Endpoint {

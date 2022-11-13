@@ -3,9 +3,10 @@ package tarsserver
 import (
 	"context"
 	"net"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
 	"time"
+
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 const (

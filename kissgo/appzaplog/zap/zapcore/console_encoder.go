@@ -24,8 +24,8 @@ import (
 	"fmt"
 	"sync"
 
-	"tarsrpc/kissgo/appzaplog/zap/buffer"
-	"tarsrpc/kissgo/appzaplog/zap/internal/bufferpool"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/buffer"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/internal/bufferpool"
 )
 
 var _sliceEncoderPool = sync.Pool{

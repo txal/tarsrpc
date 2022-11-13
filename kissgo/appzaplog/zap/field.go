@@ -25,7 +25,7 @@ import (
 	"math"
 	"time"
 
-	"tarsrpc/kissgo/appzaplog/zap/zapcore"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 )
 
 // Skip constructs a no-op field, which is often useful when handling invalid

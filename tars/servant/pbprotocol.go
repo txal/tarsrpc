@@ -13,10 +13,10 @@ import (
 	"os"
 	"time"
 
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
-	pbtaf "tarsrpc/tars/servant/protocol"
-	"tarsrpc/tars/servant/warn"
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	pbtaf "code.com/tars/goframework/tars/servant/protocol"
+	"code.com/tars/goframework/tars/servant/warn"
 
 	"github.com/golang/protobuf/proto"
 )

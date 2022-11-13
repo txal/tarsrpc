@@ -5,9 +5,10 @@ package servant
 import (
 	"errors"
 	"net/http"
-	"tarsrpc/kissgo/appzaplog"
-	"tarsrpc/kissgo/appzaplog/zap"
-	"tarsrpc/tars/tarsserver"
+
+	"code.com/tars/goframework/kissgo/appzaplog"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/tars/tarsserver"
 )
 
 var (
