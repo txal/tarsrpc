@@ -73,6 +73,7 @@ const (
 
 	clientWechatUrl = "wechat-url"
 
+	//
 	SDK_VERSION = "1.0.0"
 	PBSERVANT   = "pbservant"
 
@@ -81,10 +82,6 @@ const (
 	adminadaptername = "AdminAdapter"
 
 	defaultIdleTimeout = time.Millisecond * 610000
-
-	influxURL   = "influx_url"
-	influxToken = "influx_token"
-	influxOrg   = "influx_org"
 )
 
 var (
@@ -185,9 +182,9 @@ func (this *serverConfig) loadserverConfig(c *conf.Conf) error {
 	} else {
 		this.metricsenable = "yes"
 	}
-
 	//add version info
 	this.Version = SDK_VERSION
+
 	return this.loadServerAdapter(c)
 }
 
@@ -274,10 +271,6 @@ type clientConfig struct {
 	redisDb                 int
 	sqlAudit                int
 	wechatUrl               string
-
-	influxDBURL   string
-	influxDBToken string
-	influxDBOrg   string
 }
 
 func (this *clientConfig) loadclientConfig(c *conf.Conf) error {
@@ -336,10 +329,6 @@ func (this *clientConfig) loadclientConfig(c *conf.Conf) error {
 	}
 
 	this.wechatUrl = cMap[clientWechatUrl]
-
-	this.influxDBURL = cMap[influxURL]
-	this.influxDBToken = cMap[influxToken]
-	this.influxDBOrg = cMap[influxOrg]
 
 	return nil
 }

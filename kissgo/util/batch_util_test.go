@@ -1,10 +1,10 @@
 package util_test
 
 import (
-	"code.com/tars/goframework/kissgo/util"
 	"fmt"
 	"testing"
 	"time"
+	"code.com/tars/goframework/kissgo/util"
 )
 
 func sleepMsec(key string, n int) int {

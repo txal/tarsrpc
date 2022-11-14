@@ -1,9 +1,9 @@
 package util_test
 
 import (
-	"code.com/tars/goframework/kissgo/util"
 	"net/http"
 	"testing"
+	"code.com/tars/goframework/kissgo/util"
 )
 
 func TestHttpApiName(t *testing.T) {

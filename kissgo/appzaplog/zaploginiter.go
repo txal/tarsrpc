@@ -5,17 +5,14 @@
 package appzaplog
 
 import (
-	"fmt"
-
 	"code.com/tars/goframework/kissgo/appzaplog/zap"
 	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
-
+	"fmt"
 	//"log/syslog"
+	"gopkg.in/natefinch/lumberjack.v2"
 	"os"
 	"runtime"
 	"time"
-
-	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 //func RFC3339TimeEncoder(t time.Time, enc zapcore.PrimitiveArrayEncoder) {

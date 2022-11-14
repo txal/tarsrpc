@@ -1,12 +1,10 @@
 package servant
 
 import (
-	"time"
-
 	base "code.com/tars/goframework/jce/servant/taf"
 	"code.com/tars/goframework/jce/taf"
-
-	pbtaf "code.com/tars/goframework/tars/servant/protocol"
+	"code.com/tars/goframework/tars/servant/protocol"
+	"time"
 )
 
 type IMessage interface {
@@ -34,9 +32,9 @@ type Message struct {
 	EndTime   int64
 	Status    int
 
-	hashCode      string
-	isHash        bool
-	hashType      HashType
+	hashCode string
+	isHash   bool
+	hashType HashType
 	isConsistHash bool
 }
 
@@ -86,7 +84,7 @@ func (m *Message) hashEnable() bool {
 	return m.isHash
 }
 
-func (m *Message) consistHashEnable() bool {
+func (m *Message)consistHashEnable()bool  {
 	return m.isConsistHash
 }
 
@@ -107,8 +105,8 @@ type PbMessage struct {
 	EndTime   int64
 	Status    int
 
-	hashCode      string
-	isHash        bool
+	hashCode string
+	isHash   bool
 	isConsistHash bool
 }
 
@@ -152,7 +150,7 @@ func (m *PbMessage) hashEnable() bool {
 	return m.isHash
 }
 
-func (m *PbMessage) consistHashEnable() bool {
+func (m *PbMessage)consistHashEnable()bool  {
 	return m.isConsistHash
 }
 

@@ -6,7 +6,6 @@ package servant
 
 import (
 	"sync"
-
 	"code.com/tars/goframework/tars/servant/sd"
 )
 

@@ -5,10 +5,9 @@
 package tars
 
 import (
-	"context"
-
 	"code.com/tars/goframework/tars/servant"
-	pbtaf "code.com/tars/goframework/tars/servant/protocol"
+	"code.com/tars/goframework/tars/servant/protocol"
+	"context"
 )
 
 // AddServant only used for tars header,idl plugin use tarsheaderpbbody2go
@@ -16,6 +15,7 @@ func AddServant(v servant.Dispatcher, f interface{}, objname string) error {
 	return servant.AddServant(v, f, objname)
 }
 
+//
 func Run() {
 	servant.Run()
 }
@@ -25,7 +25,7 @@ func ReadConf(filename string) ([]byte, error) {
 	return servant.ReadConf(filename)
 }
 
-// 订阅文件配置变更
+//订阅文件配置变更
 func SubConfigPush() <-chan *pbtaf.ConfigPushNotice {
 	return servant.SubConfigPush()
 }

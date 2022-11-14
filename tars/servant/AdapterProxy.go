@@ -19,7 +19,6 @@ import (
 	"code.com/tars/goframework/kissgo/gobreaker"
 	pbtaf "code.com/tars/goframework/tars/servant/protocol"
 	"code.com/tars/goframework/tars/tarsserver"
-
 	"github.com/golang/protobuf/proto"
 )
 

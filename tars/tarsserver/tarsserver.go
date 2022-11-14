@@ -1,12 +1,11 @@
 package tarsserver
 
 import (
-	"context"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 	"net"
 	"time"
-
 	"code.com/tars/goframework/kissgo/appzaplog"
-	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"context"
 )
 
 const (
@@ -22,7 +21,7 @@ type ITarsServer interface {
 }
 
 type TarsProtoCol interface {
-	Invoke(ctx context.Context, pkg []byte) ([]byte, error)
+	Invoke(ctx context.Context,pkg []byte) ([]byte, error)
 	ParsePackage(buff []byte) (int, int)
 	InvokeTimeout(pkg []byte) ([]byte, error)
 }

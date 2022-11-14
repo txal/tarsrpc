@@ -1,12 +1,12 @@
 package yypclient
 
 import (
-	"code.com/tars/goframework/kissgo/yyp"
 	"encoding/hex"
 	"fmt"
 	"runtime"
 	"testing"
 	"time"
+	"code.com/tars/goframework/kissgo/yyp"
 )
 
 func _func() string {

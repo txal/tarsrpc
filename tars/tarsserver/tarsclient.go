@@ -1,11 +1,10 @@
 package tarsserver
 
 import (
+	"time"
+	"code.com/tars/goframework/kissgo/appzaplog"
 	"errors"
 	"sync"
-	"time"
-
-	"code.com/tars/goframework/kissgo/appzaplog"
 )
 
 type TarsClientProtocol interface {

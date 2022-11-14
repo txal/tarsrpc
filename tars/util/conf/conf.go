@@ -118,7 +118,7 @@ EXIT:
 				}
 				newline := strings.TrimSpace(line)
 				linelist := strings.Split(newline, "#")
-				k := strings.SplitN(linelist[0], "=", 2)
+				k := strings.Split(linelist[0], "=")
 				if len(k) < 2 {
 					continue
 				}

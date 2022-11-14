@@ -3,7 +3,6 @@ package servant
 import (
 	"reflect"
 	"testing"
-
 	end "code.com/tars/goframework/jce/servant/taf"
 	"code.com/tars/goframework/jce/taf"
 	"code.com/tars/goframework/jce_parser/gojce"

@@ -5,56 +5,53 @@
 // **********************************************************************
 
 package taf
-
-import (
-	"reflect"
-
-	"code.com/tars/goframework/jce_parser/gojce"
-)
+import "reflect"
+import "code.com/tars/goframework/jce_parser/gojce"
 
 type ProxyInfo struct {
-	BFromClient bool
+    BFromClient bool
 }
 
 func (_obj *ProxyInfo) resetDefault() {
-	_obj.BFromClient = true
+    _obj.BFromClient = true
 }
 
 func (_obj *ProxyInfo) WriteTo(_os gojce.JceOutputStream) error {
-	var _err error
-	if _err = _os.Write(reflect.ValueOf(&_obj.BFromClient), 0); _err != nil {
-		return _err
-	}
-	return nil
+    var _err error
+    if _err = _os.Write(reflect.ValueOf(&_obj.BFromClient), 0); _err != nil {
+        return _err
+    }
+    return nil
 }
 
 func (_obj *ProxyInfo) ReadFrom(_is gojce.JceInputStream) error {
-	var _err error
-	var _i interface{}
-	_obj.resetDefault()
-	_i, _err = _is.Read(reflect.TypeOf(_obj.BFromClient), 0, true)
-	if _err != nil {
-		return _err
-	}
-	if _i != nil {
-		_obj.BFromClient = _i.(bool)
-	}
-	return nil
+    var _err error
+    var _i interface{}
+    _obj.resetDefault()
+    _i, _err = _is.Read(reflect.TypeOf(_obj.BFromClient), 0, true)
+    if _err != nil {
+        return _err
+    }
+    if _i != nil {
+        _obj.BFromClient = _i.(bool)
+    }
+    return nil
 }
 
 func (_obj *ProxyInfo) Display(_ds gojce.JceDisplayer) {
-	_ds.Display(reflect.ValueOf(&_obj.BFromClient), "bFromClient")
+    _ds.Display(reflect.ValueOf(&_obj.BFromClient), "bFromClient")
 }
 
 func (_obj *ProxyInfo) WriteJson(_en gojce.JceJsonEncoder) ([]byte, error) {
-	var _err error
-	_err = _en.EncodeJSON(reflect.ValueOf(&_obj.BFromClient), "bFromClient")
-	if _err != nil {
-		return nil, _err
-	}
-	return _en.ToBytes(), nil
+    var _err error
+    _err = _en.EncodeJSON(reflect.ValueOf(&_obj.BFromClient), "bFromClient")
+    if _err != nil {
+        return nil, _err
+    }
+    return _en.ToBytes(), nil
 }
 
 func (_obj *ProxyInfo) ReadJson(_de gojce.JceJsonDecoder) error {
-	return _de.DecodeJSON(reflect.ValueOf(_obj))
+    return _de.DecodeJSON(reflect.ValueOf(_obj))
 }
+

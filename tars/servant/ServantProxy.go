@@ -44,6 +44,7 @@ func (s *ServantProxy) Taf_invoke(ctx context.Context, ctype byte, sFuncName str
 	atomic.CompareAndSwapInt32(&s.sid, 1<<31-1, 1)
 	ctxmap, _ := FromOutgoingContext(ctx)
 
+	//appzaplog.Debug("ctxmap info",zap.Any("ctxmap",ctxmap))
 	req := taf.RequestPacket{
 		IVersion:     1,
 		CPacketType:  ctype,
@@ -53,12 +54,14 @@ func (s *ServantProxy) Taf_invoke(ctx context.Context, ctype byte, sFuncName str
 		SBuffer:      buf,
 		ITimeout:     int32(s.timeout),
 		Context:      ctxmap,
+		//Status:       statusmap,
 	}
 
 	msg := &Message{Req: &req, Ser: s, Obj: s.obj}
 	msg.Init()
 
 	if key, ok := ctxmap[CONTEXTCONSISTHASHKEY]; ok {
+		//appzaplog.Debug("consisthashkey set",zap.String("consisthashkey",key))
 		msg.setConsistHashCode(key)
 	}
 
@@ -68,15 +71,23 @@ func (s *ServantProxy) Taf_invoke(ctx context.Context, ctype byte, sFuncName str
 		invokeTimeout = time.Duration(to) * time.Millisecond
 	}
 
+	var (
+		succ    int32 = 1
+		exec    int32
+		timeout int32
+	)
 	defer func() {
 		msg.End()
-		ReportStat(msg)
+		ReportStat(msg, succ, timeout, exec)
 	}()
 	appzaplog.Debug("Taf_invoke", zap.String("sFuncName", sFuncName),
 		zap.String("obj", s.name), zap.Int32("IRequestId", req.IRequestId))
 	if err := s.obj.Invoke(ctx, msg, invokeTimeout); err != nil {
 		appzaplog.Error("Invoke error", zap.String("ServantName", s.name),
 			zap.String("FuncName", sFuncName), zap.Int32("IRequestId", req.IRequestId), zap.Error(err))
+		//TODO report exec
+		timeout = 1
+		succ = 0
 		return nil, err
 	}
 
@@ -106,10 +117,14 @@ func (s *ServantProxy) Pb_invoke(ctx context.Context, ctype byte, sFuncName stri
 
 	msg := &PbMessage{Req: &req, Ser: s, Obj: s.obj}
 	msg.Init()
-
+	var (
+		succ    int32 = 1
+		timeout int32
+		exec    int32
+	)
 	defer func() {
 		msg.End()
-		ReportStat(msg)
+		ReportStat(msg, succ, timeout, exec)
 	}()
 	appzaplog.Debug("Pb_invoke", zap.String("sFuncName", sFuncName),
 		zap.String("obj", s.name), zap.Int32("IRequestId", req.IRequestId))
@@ -118,6 +133,9 @@ func (s *ServantProxy) Pb_invoke(ctx context.Context, ctype byte, sFuncName stri
 			zap.String("FuncName", sFuncName),
 			zap.Int32("IRequestId", req.IRequestId),
 			zap.Error(err))
+		//TODO report exec
+		timeout = 1
+		succ = 0
 		return nil, err
 	}
 
@@ -207,16 +225,23 @@ func (s *ServantProxy) Proxy_invoke(ctx context.Context, ctype byte, sFuncName s
 		msg.setConsistHashCode(key)
 	}
 	msg.Init()
-
+	var (
+		succ    int32 = 1
+		timeout int32
+		exec    int32
+	)
 	defer func() {
 		msg.End()
-		ReportStat(msg)
+		ReportStat(msg, succ, timeout, exec)
 	}()
 	appzaplog.Debug("Proxy_invoke", zap.String("sFuncName", sFuncName),
 		zap.String("obj", s.name), zap.Int32("IRequestId", req.IRequestId))
 	if err := s.obj.ProxyInvoke(ctx, msg); err != nil {
 		appzaplog.Error("Proxy_invoke error", zap.String("ServantName", s.name),
 			zap.String("FuncName", sFuncName), zap.Int32("IRequestId", req.IRequestId), zap.Error(err))
+		//TODO report exec
+		timeout = 1
+		succ = 0
 		return nil, err
 	}
 

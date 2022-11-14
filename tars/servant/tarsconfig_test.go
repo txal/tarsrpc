@@ -9,17 +9,17 @@ import (
 	"testing"
 )
 
-//	var testconfig *serverConfig = &serverConfig{
-//		Node:"tars.tarsnode.ServerObj@tcp -h 183.36.111.89 -p 19386 -t 60000",
+//var testconfig *serverConfig = &serverConfig{
+//	Node:"tars.tarsnode.ServerObj@tcp -h 183.36.111.89 -p 19386 -t 60000",
 //
-// }
+//}
 func TestMain(m *testing.M) {
 	comm := startFrameWorkComm()
 	srvcfg := &serverConfig{
 		config:   "tars.tarsconfig.ConfigObj@tcp -h 58.215.138.213 -t 60000 -p 10001",
 		App:      "HelloProtoTest",
 		Server:   "HelloProto",
-		BasePath: "/Users/o_o/develop/goprojects/src/tarsrpc/tars/testdata",
+		BasePath: "/Users/o_o/develop/goprojects/src/code.com/tars/goframework/tars/testdata",
 	}
 	initTarConfig(comm, srvcfg, 5)
 	os.Exit(m.Run())
@@ -32,7 +32,7 @@ func TestGetBaseConfPath(t *testing.T) {
 	}
 
 	basepath, err = GetConfBasePath()
-	if err != nil || basepath != "/Users/o_o/develop/goprojects/src/tarsrpc/tars/testdata/" {
+	if err != nil || basepath != "/Users/o_o/develop/goprojects/src/code.com/tars/goframework/tars/testdata/" {
 		t.Errorf("err:%v,basepath:%v", err, basepath)
 	}
 }

@@ -2,13 +2,12 @@ package servant
 
 import (
 	"bytes"
+	"code.com/tars/goframework/jce/taf"
+	"code.com/tars/goframework/jce_parser/gojce"
 	"context"
 	"fmt"
 	"reflect"
 	"testing"
-
-	"code.com/tars/goframework/jce/taf"
-	"code.com/tars/goframework/jce_parser/gojce"
 )
 
 func TestObjectProxy(t *testing.T) {
@@ -37,7 +36,7 @@ func ObjTest(obj *ObjectProxy) {
 
 	var msg Message
 	msg.Req = &req
-	obj.Invoke(context.TODO(), &msg, 3000)
+	obj.Invoke(context.TODO(),&msg,3000)
 
 	buf := bytes.NewBuffer(nil)
 	ds := gojce.NewDisplayer(buf, 0)

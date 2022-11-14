@@ -1,14 +1,13 @@
 package servant
 
 import (
-	"net"
 	"reflect"
-	"strconv"
 	"testing"
-
 	"code.com/tars/goframework/jce/taf"
 	"code.com/tars/goframework/jce_parser/gojce"
 	"code.com/tars/goframework/tars/util/endpoint"
+	"strconv"
+	"net"
 )
 
 func TestEndpointManager(t *testing.T) {
@@ -40,50 +39,50 @@ func TestEndpointManager(t *testing.T) {
 
 }
 
-func TestEmptyMapGet(t *testing.T) {
+func TestEmptyMapGet(t *testing.T)  {
 	type Userinfo struct {
 		Name string
 	}
 	var localmap map[string]*Userinfo = make(map[string]*Userinfo)
 	localmap["test"] = &Userinfo{
-		Name: "test",
+		Name:"test",
 	}
-	get := func(name string) *Userinfo {
+	get := func(name string)*Userinfo {
 		return localmap[name]
 	}
 
-	if name := get("name"); name != nil {
-		t.Error("should be empty", name)
+	if name := get("name");name != nil{
+		t.Error("should be empty",name)
 	}
 
-	if test := get("test"); test == nil || test.Name != "test" {
-		t.Error("should be test", test)
+	if test := get("test");test == nil || test.Name != "test"{
+		t.Error("should be test",test)
 	}
 }
 
 func BenchmarkMapWithObjKey(b *testing.B) {
 	b.StopTimer()
-	var objmap map[endpoint.Endpoint]int = make(map[endpoint.Endpoint]int)
+	var objmap map[endpoint.Endpoint]int =make(map[endpoint.Endpoint]int)
 	insertmap := func(num int) {
-		for i := 0; i < num; i++ {
+		for i := 0;i< num;i++{
 			end := endpoint.Endpoint{
-				Host:   "127.0.0.1",
-				Port:   int32(i),
-				IPPort: net.JoinHostPort("127.0.0.1", strconv.FormatInt(int64(i), 10)),
+				Host:"127.0.0.1",
+				Port:int32(i),
+				IPPort:net.JoinHostPort("127.0.0.1",strconv.FormatInt(int64(i),10)),
 			}
 			objmap[end] = i
 		}
 	}
 	insertmap(10)
 	key := endpoint.Endpoint{
-		Host:   "127.0.0.1",
-		Port:   int32(5),
-		IPPort: net.JoinHostPort("127.0.0.1", strconv.FormatInt(int64(5), 10)),
+		Host:"127.0.0.1",
+		Port:int32(5),
+		IPPort:net.JoinHostPort("127.0.0.1",strconv.FormatInt(int64(5),10)),
 	}
 
 	b.StartTimer()
-	for k := 0; k < b.N; k++ {
-		if _, ok := objmap[key]; !ok {
+	for k := 0;k< b.N;k++{
+		if _,ok := objmap[key];!ok{
 			b.Error("should be ok")
 		}
 	}
@@ -91,27 +90,27 @@ func BenchmarkMapWithObjKey(b *testing.B) {
 
 func BenchmarkMapWithStringKey(b *testing.B) {
 	b.StopTimer()
-	var objmap map[string]int = make(map[string]int)
+	var objmap map[string]int =make(map[string]int)
 	insertmap := func(num int) {
-		for i := 0; i < num; i++ {
+		for i := 0;i< num;i++{
 			end := endpoint.Endpoint{
-				Host:   "127.0.0.1",
-				Port:   int32(i),
-				IPPort: net.JoinHostPort("127.0.0.1", strconv.FormatInt(int64(i), 10)),
+				Host:"127.0.0.1",
+				Port:int32(i),
+				IPPort:net.JoinHostPort("127.0.0.1",strconv.FormatInt(int64(i),10)),
 			}
 			objmap[end.IPPort] = i
 		}
 	}
 	insertmap(10)
 	key := endpoint.Endpoint{
-		Host:   "127.0.0.1",
-		Port:   int32(5),
-		IPPort: net.JoinHostPort("127.0.0.1", strconv.FormatInt(int64(5), 10)),
+		Host:"127.0.0.1",
+		Port:int32(5),
+		IPPort:net.JoinHostPort("127.0.0.1",strconv.FormatInt(int64(5),10)),
 	}
 
 	b.StartTimer()
-	for k := 0; k < b.N; k++ {
-		if _, ok := objmap[key.IPPort]; !ok {
+	for k := 0;k< b.N;k++{
+		if _,ok := objmap[key.IPPort];!ok{
 			b.Error("should be ok")
 		}
 	}

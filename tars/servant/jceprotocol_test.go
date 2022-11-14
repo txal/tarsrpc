@@ -1,15 +1,14 @@
 package servant
 
 import (
-	"bytes"
-	"context"
-	"encoding/binary"
-	"errors"
 	"testing"
-
 	"code.com/tars/goframework/jce/taf"
-	"code.com/tars/goframework/jce_parser/gojce"
+	"context"
 	"github.com/golang/protobuf/proto"
+	"errors"
+	"bytes"
+	"code.com/tars/goframework/jce_parser/gojce"
+	"encoding/binary"
 )
 
 type helloDispatcher struct {
@@ -71,9 +70,9 @@ var fileDescriptor0 = []byte{
 }
 
 type HelloServerImpl struct {
-}
 
-func (hs *HelloServerImpl) TestHello(ctx context.Context, req *HelloRequest) (*HelloReply, error) {
+}
+func (hs *HelloServerImpl)TestHello(ctx context.Context, req *HelloRequest) (*HelloReply, error)  {
 	panic("handler panic")
 }
 
@@ -109,15 +108,15 @@ func (_obj *helloDispatcher) Dispatch(ctx context.Context, _val interface{}, req
 
 func TestDoDispatch(t *testing.T) {
 	raw := HelloRequest{
-		Name: "test",
+		Name:"test",
 	}
-	rawbuf, err := proto.Marshal(&raw)
+	rawbuf,err := proto.Marshal(&raw)
 	if err != nil {
-		t.Error("proto.Marshal", err)
+		t.Error("proto.Marshal",err)
 	}
 	req := &taf.RequestPacket{
-		SFuncName: "TestHello",
-		SBuffer:   rawbuf,
+		SFuncName:"TestHello",
+		SBuffer:rawbuf,
 	}
 
 	os := gojce.NewOutputStream()
@@ -129,18 +128,18 @@ func TestDoDispatch(t *testing.T) {
 	len := sbuf.Len()
 	binary.BigEndian.PutUint32(sbuf.Bytes(), uint32(len))
 
-	jceprotocol := NewJceProtocol(NewHelloDispatcher(), &HelloServerImpl{})
-	resp, err := jceprotocol.Invoke(context.Background(), sbuf.Bytes())
+	jceprotocol := NewJceProtocol(NewHelloDispatcher(),&HelloServerImpl{})
+	resp,err := jceprotocol.Invoke(context.Background(),sbuf.Bytes())
 	if err != nil {
-		t.Logf("resp:%v,err:%v", resp, err)
+		t.Logf("resp:%v,err:%v",resp,err)
 	}
-	t.Logf("resp:%v", resp)
+	t.Logf("resp:%v",resp)
 
 	var rspPackage taf.ResponsePacket
 	is := gojce.NewInputStream(resp)
-	if err = rspPackage.ReadFrom(is); err != nil {
+	if err = rspPackage.ReadFrom(is);err != nil{
 		//this will close the connection
-		t.Error("Invoke ReadFrom reqPackage failed", err)
+		t.Error("Invoke ReadFrom reqPackage failed",err)
 	}
-	t.Logf("%v", rspPackage)
+	t.Logf("%v",rspPackage)
 }

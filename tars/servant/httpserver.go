@@ -1,12 +1,11 @@
 package servant
 
 import (
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 	"net/http"
 	"strings"
 	"time"
-
 	"code.com/tars/goframework/kissgo/appzaplog"
-	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 type TarsHttpMux struct {

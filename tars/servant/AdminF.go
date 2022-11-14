@@ -111,7 +111,7 @@ func parseCommand(command string) (cm string, params []string, err error) {
 	return
 }
 
-// todo
+//todo
 func connctionCMD() (string, error) {
 	return "not support yet", nil
 }

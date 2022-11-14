@@ -1,9 +1,9 @@
 package util_test
 
 import (
-	"code.com/tars/goframework/kissgo/util"
 	"fmt"
 	"testing"
+	"code.com/tars/goframework/kissgo/util"
 )
 
 func TestIps(t *testing.T) {

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"reflect"
 	"testing"
-
 	"code.com/tars/goframework/jce_parser/gojce"
 )
 
@@ -21,7 +20,7 @@ func TestServantProxy(t *testing.T) {
 	resp, err := s.Taf_invoke(context.TODO(), 0, "taf_ping", oe.ToBytes())
 
 	if err != nil {
-		t.Error("Taf_invoke failed", err)
+		t.Error("Taf_invoke failed",err)
 	}
 
 	is := gojce.NewInputStream(resp.SBuffer)

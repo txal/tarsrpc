@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"code.com/tars/goframework/kissgo/s2s"
 	"log"
 	"math/rand"
 	"net"
@@ -14,11 +15,8 @@ import (
 	"sync"
 	"time"
 
-	"code.com/tars/goframework/kissgo/s2s"
-
-	"code.com/tars/goframework/kissgo/yyp"
-
 	"gopkg.in/fatih/pool.v2"
+	"code.com/tars/goframework/kissgo/yyp"
 )
 
 type addr struct {
@@ -106,9 +104,9 @@ func (t *Client) DoRoundtripRetry(reqURI, rspURI int, req []byte) (rsp []byte, e
 }
 
 type YYPResp struct {
-	Uri     uint32
+	Uri uint32
 	Reserve uint16
-	Data    []byte
+	Data []byte
 }
 
 // DoRoundtrip send something on this session, and wait until recv something.
@@ -182,7 +180,7 @@ func (t *Client) DoRoundtrip(reqURI, rspURI int, req []byte) (rsp []byte, err er
 	}
 
 	var yypresp YYPResp
-	if err = yyp.Unmarshal(b, &yypresp); err != nil {
+	if err = yyp.Unmarshal(b,&yypresp);err != nil{
 		return
 	}
 	//var d yyp.DecodeState

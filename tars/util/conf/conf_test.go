@@ -1,11 +1,8 @@
 package conf
 
 import (
-	"fmt"
 	"strconv"
 	"testing"
-
-	"code.com/tars/goframework/kissgo/appzaplog"
 )
 
 func TestConf(t *testing.T) {
@@ -64,21 +61,7 @@ func TestConf(t *testing.T) {
 		t.Error("empty netthread:", netthread)
 		intNetThread, err := strconv.Atoi(netthread)
 		if err != nil {
-			t.Errorf("intNetThread:%v failed", intNetThread)
+			t.Errorf("intNetThread:%v failed", intNetThread,err)
 		}
-	}
-}
-
-func TestNewConf(t *testing.T) {
-	appzaplog.InitAppLog()
-	conf := NewConf("MMGR.TestServer.conf")
-	m := conf.GetMap("/tars/application/client")
-	for k, v := range m {
-		fmt.Println(k, v)
-	}
-
-	m = conf.GetMap("/tars/application/server")
-	for k, v := range m {
-		fmt.Println(k, v)
 	}
 }

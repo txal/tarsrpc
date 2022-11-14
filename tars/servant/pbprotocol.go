@@ -17,7 +17,6 @@ import (
 	"code.com/tars/goframework/kissgo/appzaplog/zap"
 	pbtaf "code.com/tars/goframework/tars/servant/protocol"
 	"code.com/tars/goframework/tars/servant/warn"
-
 	"github.com/golang/protobuf/proto"
 )
 

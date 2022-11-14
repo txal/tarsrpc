@@ -1,10 +1,9 @@
 package main
 
 import (
+	"code.com/tars/goframework/kissgo/yyp"
 	"log"
 	"time"
-
-	"code.com/tars/goframework/kissgo/yyp"
 	"code.com/tars/goframework/kissgo/yypclient"
 )
 

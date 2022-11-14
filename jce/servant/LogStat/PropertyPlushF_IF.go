@@ -5,106 +5,100 @@
 // **********************************************************************
 
 package LogStat
-
 import (
-	context "context"
-	"errors"
-	"reflect"
-
-	"code.com/tars/goframework/jce/taf"
-	"code.com/tars/goframework/jce_parser/gojce"
-	m "code.com/tars/goframework/tars/servant/model"
-)
-
+    "code.com/tars/goframework/jce/taf"
+    "code.com/tars/goframework/jce_parser/gojce"
+    "reflect"
+    m "code.com/tars/goframework/tars/servant/model"
+    "errors"
+    context "context"
+    )
 type PropertyPlushF struct {
-	s m.Servant
+    s m.Servant
 }
-
-func (_obj *PropertyPlushF) Logstat(log StatLog, _opt ...map[string]string) (_ret int32, _err error) {
-	_oe := gojce.NewOutputStream()
-	_oe.Write(reflect.ValueOf(&log), 1)
-	var (
-		_resp *taf.ResponsePacket
-		err   error
-	)
-	_resp, err = _obj.s.Taf_invoke(context.TODO(), 0, "logstat", _oe.ToBytes())
-	if err != nil {
-		return _ret, err
-	}
-	_is := gojce.NewInputStream(_resp.SBuffer)
-	r0, err := _is.Read(reflect.TypeOf(_ret), 0, true)
-	if err != nil {
-		return _ret, err
-	}
-	return r0.(int32), nil
+func (_obj *PropertyPlushF) Logstat(log StatLog,_opt ...map[string]string )(_ret int32,_err error){
+    _oe := gojce.NewOutputStream()
+    _oe.Write(reflect.ValueOf(&log), 1)
+    var (
+        _resp *taf.ResponsePacket
+        err error
+    )
+    _resp,err = _obj.s.Taf_invoke(context.TODO(),0,"logstat", _oe.ToBytes())
+    if err != nil {
+        return _ret,err
+    }
+    _is := gojce.NewInputStream(_resp.SBuffer)
+    r0, err := _is.Read(reflect.TypeOf(_ret), 0 ,true)
+    if err!=nil {
+        return _ret,err
+    }
+    return r0.(int32),nil
 }
-func (_obj *PropertyPlushF) Mutillogstat(logs []StatLog, _opt ...map[string]string) (_ret int32, _err error) {
-	_oe := gojce.NewOutputStream()
-	_oe.Write(reflect.ValueOf(&logs), 1)
-	var (
-		_resp *taf.ResponsePacket
-		err   error
-	)
-	_resp, err = _obj.s.Taf_invoke(context.TODO(), 0, "mutillogstat", _oe.ToBytes())
-	if err != nil {
-		return _ret, err
-	}
-	_is := gojce.NewInputStream(_resp.SBuffer)
-	r0, err := _is.Read(reflect.TypeOf(_ret), 0, true)
-	if err != nil {
-		return _ret, err
-	}
-	return r0.(int32), nil
+func (_obj *PropertyPlushF) Mutillogstat(logs []StatLog,_opt ...map[string]string )(_ret int32,_err error){
+    _oe := gojce.NewOutputStream()
+    _oe.Write(reflect.ValueOf(&logs), 1)
+    var (
+        _resp *taf.ResponsePacket
+        err error
+    )
+    _resp,err = _obj.s.Taf_invoke(context.TODO(),0,"mutillogstat", _oe.ToBytes())
+    if err != nil {
+        return _ret,err
+    }
+    _is := gojce.NewInputStream(_resp.SBuffer)
+    r0, err := _is.Read(reflect.TypeOf(_ret), 0 ,true)
+    if err!=nil {
+        return _ret,err
+    }
+    return r0.(int32),nil
 }
-func (_obj *PropertyPlushF) SetServant(s m.Servant) {
-	_obj.s = s
+func(_obj *PropertyPlushF) SetServant(s m.Servant){
+    _obj.s = s
 }
-
 type _impPropertyPlushF interface {
-	Logstat(log StatLog) (int32, error)
-	Mutillogstat(logs []StatLog) (int32, error)
+    Logstat(log StatLog) (int32,error)
+    Mutillogstat(logs []StatLog) (int32,error)
 }
-
-func (_obj *PropertyPlushF) Dispatch(ctx context.Context, _val interface{}, req *taf.RequestPacket) (*taf.ResponsePacket, error) {
-	parms := gojce.NewInputStream(req.SBuffer)
-	oe := gojce.NewOutputStream()
-	_imp := _val.(_impPropertyPlushF)
-	switch req.SFuncName {
-	case "logstat":
-		var p_0 StatLog
-		t_0, err := parms.Read(reflect.TypeOf(p_0), 1, true)
-		if err != nil {
-			return nil, err
-		}
-		_ret, err := _imp.Logstat(t_0.(StatLog))
-		if err != nil {
-			return nil, err
-		}
-		oe.Write(reflect.ValueOf(&_ret), 0)
-	case "mutillogstat":
-		var p_0 []StatLog
-		t_0, err := parms.Read(reflect.TypeOf(p_0), 1, true)
-		if err != nil {
-			return nil, err
-		}
-		_ret, err := _imp.Mutillogstat(t_0.([]StatLog))
-		if err != nil {
-			return nil, err
-		}
-		oe.Write(reflect.ValueOf(&_ret), 0)
-	default:
-		return nil, errors.New("func mismatch")
-	}
-	var status map[string]string
-	return &taf.ResponsePacket{
-		IVersion:     1,
-		CPacketType:  0,
-		IRequestId:   req.IRequestId,
-		IMessageType: 0,
-		IRet:         0,
-		SBuffer:      oe.ToBytes(),
-		Status:       status,
-		SResultDesc:  "",
-		Context:      req.Context,
-	}, nil
+func(_obj *PropertyPlushF) Dispatch(ctx context.Context,_val interface{}, req *taf.RequestPacket) (*taf.ResponsePacket,error){
+    parms := gojce.NewInputStream(req.SBuffer)
+    oe := gojce.NewOutputStream()
+    _imp := _val.(_impPropertyPlushF)
+    switch req.SFuncName {
+        case "logstat":
+            var p_0 StatLog
+            t_0,err := parms.Read(reflect.TypeOf(p_0),1,true)
+            if err != nil{
+                return nil,err
+            }
+            _ret,err := _imp.Logstat(t_0.(StatLog))
+            if err != nil{
+                return nil,err
+            }
+            oe.Write(reflect.ValueOf(&_ret), 0)
+        case "mutillogstat":
+            var p_0 []StatLog
+            t_0,err := parms.Read(reflect.TypeOf(p_0),1,true)
+            if err != nil{
+                return nil,err
+            }
+            _ret,err := _imp.Mutillogstat(t_0.([]StatLog))
+            if err != nil{
+                return nil,err
+            }
+            oe.Write(reflect.ValueOf(&_ret), 0)
+        default:
+            return nil,errors.New("func mismatch")
+    }
+    var status map[string]string
+    return &taf.ResponsePacket{
+        IVersion:     1,
+        CPacketType:  0,
+        IRequestId:   req.IRequestId,
+        IMessageType: 0,
+        IRet:         0,
+        SBuffer:      oe.ToBytes(),
+        Status:       status,
+        SResultDesc:  "",
+        Context:      req.Context,
+    },nil
 }

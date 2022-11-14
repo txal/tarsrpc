@@ -1,19 +1,19 @@
 /*
+
  */
 package servant
 
 import (
 	"errors"
-	"net/http"
-
-	"code.com/tars/goframework/kissgo/appzaplog"
 	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"net/http"
+	"code.com/tars/goframework/kissgo/appzaplog"
 	"code.com/tars/goframework/tars/tarsserver"
 )
 
 var (
 	ServantConfNotFoundTErr = errors.New("server config not found")
-	ServantExist            = errors.New("goSvrs already exist")
+	ServantExist = errors.New("goSvrs already exist")
 )
 
 func GetServantConfig(objname string) (cfg *tarsserver.TarsServerConf, err error) {
@@ -32,12 +32,12 @@ func GetServantConfig(objname string) (cfg *tarsserver.TarsServerConf, err error
 }
 
 // AddServant only used for tars header,idl plugin use tarsheaderpbbody2go
-func AddServant(v Dispatcher, f interface{}, objname string) error {
-	fullobjname, err := fullObjName(objname)
+func AddServant(v Dispatcher, f interface{}, objname string) error{
+	fullobjname,err := fullObjName(objname)
 	if err != nil {
 		return err
 	}
-	return addServant(v, f, fullobjname)
+	return addServant(v,f,fullobjname)
 }
 
 func addServant(v Dispatcher, f interface{}, fullobjname string) error {
@@ -80,8 +80,8 @@ func addServant(v Dispatcher, f interface{}, fullobjname string) error {
 //}
 
 // AddHttpServant 添加一个http的server
-func AddHttpServant(mux http.Handler, objname string) error {
-	fullobjname, err := fullObjName(objname)
+func AddHttpServant(mux http.Handler, objname string) error{
+	fullobjname,err := fullObjName(objname)
 	if err != nil {
 		return err
 	}

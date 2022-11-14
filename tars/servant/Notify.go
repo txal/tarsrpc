@@ -1,9 +1,9 @@
 package servant
 
 import (
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
 	"code.com/tars/goframework/jce/notify/taf"
 	"code.com/tars/goframework/kissgo/appzaplog"
-	"code.com/tars/goframework/kissgo/appzaplog/zap"
 )
 
 type NotifyHelper struct {
@@ -14,20 +14,20 @@ type NotifyHelper struct {
 
 var defaultNotifyHelper *NotifyHelper
 
-func initNotify(comm *Communicator, srvconfig *serverConfig) error {
-	if comm == nil || srvconfig == nil {
+func initNotify(comm *Communicator,srvconfig *serverConfig) error  {
+	if comm == nil || srvconfig == nil{
 		return NilParamsErr
 	}
 	tn := &taf.Notify{}
 	tn.SetServant(comm.GetServantProxy(srvconfig.notify))
 	defaultNotifyHelper = &NotifyHelper{
-		comm: comm,
-		tn:   tn,
+		comm:comm,
+		tn :tn,
 		//todo params
-		tm: taf.ReportInfo{
-			SApp:       srvconfig.App,
-			SServer:    srvconfig.Server,
-			SContainer: srvconfig.Container,
+		tm : taf.ReportInfo{
+			SApp:srvconfig.App,
+			SServer:srvconfig.Server,
+			SContainer:srvconfig.Container,
 		},
 	}
 	return nil
@@ -41,7 +41,7 @@ func (n *NotifyHelper) ReportNotifyInfo(info string) {
 }
 
 func reportNotifyInfo(info string) {
-	if defaultNotifyHelper == nil {
+	if defaultNotifyHelper == nil{
 		appzaplog.Error("notify client not init")
 		return
 	}

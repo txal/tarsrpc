@@ -1,10 +1,9 @@
 package endpoint
 
 import (
-	"net"
-	"strconv"
-
 	"code.com/tars/goframework/jce/servant/taf"
+	"strconv"
+	"net"
 )
 
 func Taf2endpoint(end taf.EndpointF) Endpoint {
@@ -16,7 +15,7 @@ func Taf2endpoint(end taf.EndpointF) Endpoint {
 	return Endpoint{
 		Host:      end.Host,
 		Port:      int32(end.Port),
-		IPPort:    net.JoinHostPort(end.Host, strconv.FormatInt(int64(end.Port), 10)),
+		IPPort:    net.JoinHostPort(end.Host,strconv.FormatInt(int64(end.Port),10)),
 		Timeout:   int32(end.Timeout),
 		Proto:     proto,
 		Container: end.ContainerName,

@@ -5,10 +5,10 @@
 package appzaplog
 
 import (
-	"code.com/tars/goframework/kissgo/appzaplog/zap"
-	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 	"encoding/json"
 	"fmt"
+	"code.com/tars/goframework/kissgo/appzaplog/zap"
+	"code.com/tars/goframework/kissgo/appzaplog/zap/zapcore"
 	"testing"
 )
 

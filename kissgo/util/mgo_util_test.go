@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"code.com/tars/goframework/kissgo/util"
 	"gopkg.in/mgo.v2"
+	"code.com/tars/goframework/kissgo/util"
 )
 
 var g_lockKey = "testlock1"

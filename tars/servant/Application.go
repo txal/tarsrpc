@@ -8,8 +8,6 @@ import (
 	"path"
 	"time"
 
-	"code.com/tars/goframework/tars/servant/stat"
-
 	"code.com/tars/goframework/tars/servant/warn"
 
 	"github.com/go-redis/redis"
@@ -72,7 +70,6 @@ func init() {
 		logPath := srvConfig.LogPath + "/" + srvConfig.App + "/" + srvConfig.Server + "/" + srvConfig.Server + ".log"
 		appzaplog.InitAppLog(appzaplog.ProcessName(path.Base(os.Args[0])+"_rd"), appzaplog.LogPath(logPath))
 	}
-
 	comm := startFrameWorkComm()
 	if err := initFrameWorkClients(comm); err != nil {
 		appzaplog.Error("initFrameWork failed", zap.Error(err))
@@ -84,13 +81,10 @@ func init() {
 }
 
 func initFrameWorkClients(c *Communicator) error {
+	//go initStatF(c)
 	if cc := GetClientConfig(); cc != nil {
-		// 初始化接口统计
-		if cc.influxDBURL != "" {
-			err := stat.Init(cc.influxDBURL, cc.influxDBToken, cc.influxDBOrg)
-			if err != nil {
-				panic(err)
-			}
+		if err := initStatF(c, cc.stat); err != nil {
+			appzaplog.Error("initStatF failed", zap.Error(err))
 		}
 
 		if err := initRedis(cc.redisHost, cc.redisPassword, cc.redisDb); err != nil {
