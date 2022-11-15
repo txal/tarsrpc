@@ -42,7 +42,7 @@ const panicWarnTpl = `<font color="warning">panic</font>
 func (s *JceProtocol) doDispatch(ctx context.Context, reqPackage *taf.RequestPacket) (rspPackage *taf.ResponsePacket, err error) {
 	defer func() {
 		if r := recover(); r != nil {
-			env := os.Getenv("YUNGAME_ENV")
+			env := os.Getenv("GAME_ENV")
 			_ = warn.ServerAlarm(fmt.Sprintf(panicWarnTpl, time.Now().Format("2006-01-02 15:04:05"), env,
 				reqPackage.SServantName, reqPackage.SFuncName, warn.GetIp(), r, getStackInfo()))
 			appzaplog.DPanic("doDispatch handler panic", zap.Any("panic", r))

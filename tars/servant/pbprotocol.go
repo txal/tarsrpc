@@ -37,7 +37,7 @@ func NewPbProtocol(dispatcher PbDispatcher, imp interface{}) *PbProtocol {
 func (s *PbProtocol) doDispatch(ctx context.Context, reqPackage *pbtaf.RequestPacket) (rspPackage *pbtaf.ResponsePacket, err error) {
 	defer func() {
 		if r := recover(); r != nil {
-			env := os.Getenv("YUNGAME_ENV")
+			env := os.Getenv("GAME_ENV")
 			_ = warn.ServerAlarm(fmt.Sprintf(panicWarnTpl, time.Now().Format("2006-01-02 15:04:05"), env,
 				reqPackage.SServantName, reqPackage.SFuncName, warn.GetIp(), r, getStackInfo()))
 			appzaplog.DPanic("doDispatch handler panic", zap.Any("panic", r))
